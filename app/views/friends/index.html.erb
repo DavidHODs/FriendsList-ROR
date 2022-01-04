@@ -1,0 +1,31 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Friends</h1>
+
+<% if user_signed_in? %>
+
+<div id="friends">
+  <% @friends.each do |friend| %>
+    <%= render friend %>
+    <p>
+      <%= link_to "Show this friend", friend %>
+    </p>
+
+    <% if friend.user == current_user %>
+
+    <p>
+      <%= link_to "Edit this friend", edit_friend_path(friend) %>
+    </p>
+
+    <p>
+      <%= link_to "Destroy this friend", friend, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  <% end %>
+  <% end %>
+</div>
+
+<% else %>
+
+<% end %>
+
+<%= link_to "New friend", new_friend_path %>
